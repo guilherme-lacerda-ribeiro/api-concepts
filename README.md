@@ -4,19 +4,25 @@
 - Payload: corpo da requisição (body request).
 
 ### Métodos HTTP
-RFC xxxx e RFC xxxx
+[RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#page-24) e [RFC 5789](https://datatracker.ietf.org/doc/html/rfc5789).
 - GET: obter
   - `example.com/api/recurso` todos os recursos
   - `example.com/api/recurso/1` todos os dados do recurso 1
-- POST: grava um novo recurso, exige payload
-- PUT: atualiza um recurso se o ID existir ou grava um novo se o ID não existir, exige payload
-  - comumente não grava, apenas atualiza, gerando, erroneamente, um 'not found'
-- PATCH: atualiza um recurso com o ID informado, exige payload
-  - se não existir, erro
-- DELETE: remove o recurso
 - HEAD: idêntico ao GET porém não retorna o corpo da resposta (response body), apenas os cabeçalhos
   - `curl -I`
+- POST: grava um novo recurso, exige payload
+- PUT: atualiza um recurso se o ID existir ou grava um novo se o ID não existir, exige payload
+  - comumente não grava caso não exista o ID, apenas atualiza, gerando, erroneamente, um 'not found'
+  - se fosse RESTFull (completa) deveria gerar o erro
+- PATCH: atualiza um recurso com o ID informado, exige payload
+  - se não existir, retorna erro
+  - atualização parcial (apenas um campo por exemplo), apenas o que foi inserido no payload
+- DELETE: remove o recurso
 - OPTIONS: exibe informações dos métodos HTTP permitidos e do CORS.
+  - traz apenas os cabeçalhos
+  - quais as URLs podem acessar
+  - quais métodos suporta
+  - o navegador fazendo uma requisição javascript primeiro ele faz um OPTIONS para conferir se o URL aceita o que foi codificado.
 
 ## Ferramentas
 - Postman
