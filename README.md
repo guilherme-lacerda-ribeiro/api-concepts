@@ -88,6 +88,21 @@ Usados para negociar como serão os detalhes das transações, qual o resultado 
 
 Além dos de formato, os de cache também são os mais uitilizados. (etag também pode ser usado para cache). Nem todo cliente tem a capacidade de realizar cache, mas o servidor precisa prover as informações.
 
+## Padrões de integração
+- RPC - remote procedure call era um padrão de chamar as funções remotamente. `http://server/recuperarTodosOsCursos` por exemplo.
+
+- SOAP foi um protocolo que utilizava este padrão RPC. Era um protocolo aberto até 2009, criado pela Microsoft. Via XML. Desde 2009 não é mais utilizado em novas implementações.
+
+- REST tem por ideia a transferência de estados (Representational State Transfer). Quando utilizo REST não estou chamando uma função mas transferindo um estado. O GET é "pegar todos os estados do recurso indicado". O PATCH é "atualize o recurso tal com este estado agora".
+
+- RESTful - API que segue os padrões REST.
+
+- GraphQL: preciso de todos os telefones (um recurso), de todos os alunos (outro recurso) que fizeram o curso tal (outro recurso ainda), ou seja, 3 requisições pelo menos. O graphql permite que criemos uma query que traz isso de uma só vez por exemplo, traz flexibilidade. Não segue todos os padrões HTTP (todos os status são 200, mesmo com erro, tem que analisar o corpo da requisição e da resposta). Como se fosse um SQL direto ao banco de dados. O cliente precisa saber o que quer e implementar, o graphql fornece tipo uma interface).
+
+- gRPC: SOAP era muito verboso. grpc é um framework para implementar RPC mais moderno. Como se estivesse chamando um método mesmo. `resposta = variavel.funcao('parametro')` variavel "aponta" para o servidor remoto. Utilizado quando precisamos de baixa latência. Serviços muito críticos. Comunicação entre serviços (e não entre navegador e servidor). Por padrão tem compressão.
+
+- Webhook: exponho um endpoint, URL, para que outro serviço acessa para informar que algo aconteceu. Um push no github por exemplo. O que quero ouvir de eventos, preciso pesquisar pra saber como o provedor (github por exemplo) fornece esse dado.
+
 ## Ferramentas
 - Postman
 - https://jsonplaceholder.typicode.com/
