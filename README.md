@@ -25,9 +25,34 @@
   - o navegador fazendo uma requisição javascript primeiro ele faz um OPTIONS para conferir se o URL aceita o que foi codificado.
 
 ### CORS - OPTIONS
-Cross-origin resource sharing. O método OPTIONS é utilizado pelo navegador exatamente para obter informações sobre acesso a recursos a partir de origens diferentes.
+Cross-origin resource sharing. O método OPTIONS é utilizado pelo navegador exatamente para obter informações sobre acesso a recursos a partir de origens diferentes. 
 
 [![API Bloqueada](https://img.youtube.com/vi/Fha6Il-5RYE/0.jpg)](https://www.youtube.com/watch?v=Fha6Il-5RYE).
+
+Com o navegador vou na aba de rede e vejo duas requisições, uma OPTIONS (preflight) response e a outra efetivamente a requisição. O javascript (por exemplo) faz a validação via OPTIONS se consegue acessar ou não o recurso e enviar parâmetros, cabeçalhos, etc.
+
+Se não quiser receber o erro (mas não ter acesso à resposta), posso incluir o "no-cors" no front-end. Não aconselhável.
+```js
+fetch('http://app.back:8080/api.php', { mode: "no-cors" })
+  .then(res => res.json())
+  .then(res => document.getElementById('api').textContent = res.text)
+  .catch(error => document.getElementById('api').textContent = error.message);
+```
+
+Para corrigir, na API eu devo inserir os headers permitindo o que foi solicitado (origem, cabeçalhos e métodos).
+```php
+<?php
+
+declare(strict_types=1);
+
+header('Access-Control-Allow-Origin: http://app.front:8080');
+header('Access-Control-Allow-Headers: content-type, x-teste');
+header('Access-Control-Allow-Methods: PUT, PATCH, DELETE');
+
+echo json_encode([
+    'text' => 'Resposta vindo da API',
+]);
+```
 
 ## Ferramentas
 - Postman
