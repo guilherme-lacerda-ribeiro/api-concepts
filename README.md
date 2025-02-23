@@ -4,7 +4,7 @@
 - Payload: corpo da requisição (body request).
 
 ### Métodos HTTP
-[RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#page-24) e [RFC 5789](https://datatracker.ietf.org/doc/html/rfc5789).
+[RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#page-24), [RFC 5789](https://datatracker.ietf.org/doc/html/rfc5789) e [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110).
 - GET: obter
   - `example.com/api/recurso` todos os recursos
   - `example.com/api/recurso/1` todos os dados do recurso 1
@@ -23,6 +23,11 @@
   - quais as URLs podem acessar
   - quais métodos suporta
   - o navegador fazendo uma requisição javascript primeiro ele faz um OPTIONS para conferir se o URL aceita o que foi codificado.
+
+### CORS - OPTIONS
+Cross-origin resource sharing. O método OPTIONS é utilizado pelo navegador exatamente para obter informações sobre acesso a recursos a partir de origens diferentes.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Fha6Il-5RYE?si=UcQr_CEFphhfbpEj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Ferramentas
 - Postman
