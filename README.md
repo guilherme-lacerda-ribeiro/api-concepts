@@ -3,7 +3,8 @@
 - Resource: recurso que se trata. `example.com/api/recurso`.
 - Payload: corpo da requisição (body request).
 
-### Métodos HTTP
+## Request
+### [Métodos HTTP](https://datatracker.ietf.org/doc/html/rfc9110#name-methods)
 [RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#page-24), [RFC 5789](https://datatracker.ietf.org/doc/html/rfc5789) e [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110).
 - GET: obter
   - `example.com/api/recurso` todos os recursos
@@ -70,6 +71,22 @@ echo json_encode([
     'text' => 'Resposta vindo da API',
 ]);
 ```
+## Response
+Toda resposta http tem um [código (status)](https://datatracker.ietf.org/doc/html/rfc7231#page-47), mais comum é 200, ok.
+
+404 por exemplo é um problema do lado do cliente, que tentou fazer uma requisição em um recursos que não foi encontrado. Tentar excluir (method DELETE) um recurso que não existe por exemplo.
+
+Ao criar uma API é muito importante utilizar os status corretamente. Por exemplo, jamais devolver um status da faixa 200 indicando que falta um parametro por exemplo.
+
+- 1xx (Informational): The request was received, continuing process
+- 2xx (Successful): The request was successfully received, understood, and accepted
+- 3xx (Redirection): Further action needs to be taken in order to complete the request
+- 4xx (Client Error): The request contains bad syntax or cannot be fulfilled
+
+## Cabeçalhos
+Usados para negociar como serão os detalhes das transações, qual o resultado esperado pela requisição (accept), qual o conteúdo da resposta (content-type), etc. Utilize OPTIONS para saber os tipos aceitos (cors, headers, etc).
+
+Além dos de formato, os de cache também são os mais uitilizados. (etag também pode ser usado para cache). Nem todo cliente tem a capacidade de realizar cache, mas o servidor precisa prover as informações.
 
 ## Ferramentas
 - Postman
