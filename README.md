@@ -24,6 +24,23 @@
   - quais métodos suporta
   - o navegador fazendo uma requisição javascript primeiro ele faz um OPTIONS para conferir se o URL aceita o que foi codificado.
 
+#### Propriedades
+- Safe methods: seguros, GET, HEAD, OPTIONS. Pode ser chamado indiscriminadamente sem preocupar com estar gravando coisas no lado do servidor. Motores de busca, por exemplo o Google, utilizam safe methods porque eles são readonly.
+- Idempotent methods: todas as vezes que eu chamar trará sempre o mesmo resultado. Os métodos safe são também idempotentes, uma vez que se eu fizer GET uma vez ou 10 vezes o resultdao teria que ser o mesmo (claro, se ninguém alterar nada de modo concorrente).\
+PUT e DELETE também. Se removi um registro, o registro está removido, se remover novamente, o registro estará removido, não causa efeito do lado do servidor. Se atualizo um recuso inteiro, todo o recurso está atualizado, se eu mando atualizar novamente, manterá atualizado o recurso inteiro.\
+O retorno em si não precisa ser idêntico (sucesso ou erro), mas o resultado esperado (no lado do servidor, dos dados) precisa ser idêntico.
+- Cacheable method: pode ser armazenado para resultados mais rápidos, pode realizar cache. GET e HEAD por exemplo podem, se a resposta tiver definido explicitamente informações de quão recente é a informação ([fressness](https://datatracker.ietf.org/doc/html/rfc9111#name-freshness)) e o 'Content-Location' no cabeçalho. Informações de freshness podem ser fornecidas através de cabeçalhos como Expires ou Cache-Control: max-age.
+
+| Método   | Seguro | Idempotente | Cacheável |
+|----------|--------|-------------|------------|
+| GET      | Sim    | Sim         | Sim        |
+| POST     | Não    | Não         | *          |
+| PUT      | Não    | Sim         | Não        |
+| DELETE   | Não    | Sim         | Não        |
+| PATCH    | Não    | Não         | *          |
+| HEAD     | Sim    | Sim         | Sim        |
+| OPTIONS  | Sim    | Sim         | Não        |
+
 ### CORS - OPTIONS
 Cross-origin resource sharing. O método OPTIONS é utilizado pelo navegador exatamente para obter informações sobre acesso a recursos a partir de origens diferentes. 
 
