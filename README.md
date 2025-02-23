@@ -27,7 +27,7 @@
 ### CORS - OPTIONS
 Cross-origin resource sharing. O método OPTIONS é utilizado pelo navegador exatamente para obter informações sobre acesso a recursos a partir de origens diferentes.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Fha6Il-5RYE?si=UcQr_CEFphhfbpEj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![API Bloqueada](https://img.youtube.com/vi/Fha6Il-5RYE/0.jpg)](https://www.youtube.com/watch?v=Fha6Il-5RYE).
 
 ## Ferramentas
 - Postman
