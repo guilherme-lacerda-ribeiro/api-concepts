@@ -182,3 +182,6 @@ EventSource é a API do servidor que permite a comunicação deste tipo com o se
 No devtools, em Network, aparece uma aba chamada EventStream para a requisição.
 
 Caso o cliente queira enviar alguma mensagem para o servidor durante esse tempo, uma nova requisição precisa ser feita, normalmente em outro endpoint. Para cenários onde a comunicação bi-direcional é necessária, como chat ou jogos online, há uma outra técnica que resolve esse problema, porém com uma complexidade a mais: [WebSockets](https://youtu.be/QkhbQoajdCw) (HTML 5).
+
+## Documentação API
+Open API - Swagger - repositório pessoal próprio já possui instruções e exemplos.
