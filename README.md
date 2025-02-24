@@ -152,3 +152,33 @@ Se é necessário mudar alguma definição da API, o interessante é gerar uma n
 
 Facilitação na criação de contratos e fornecimento de prazos para descontinuação de funcionalidades.
 
+## Comunicação em tempo real
+### Long e short polling
+Atualização em tempo real. Não quero mais uma resposta estática, mas, sim dinâmica. À medida que for atualizando os resultados devem ser informados.
+- short polling: em intervalos curtos (a cada segundo) pergunto ao servidor se tem atualização. Gera sobrecarga.
+- long polling: faço a requisição agora e o servidor não responde de imediato, ele só responde quando tiver alteração no dado. Cliente fica esperando por segundos, minutos ou até dar timeout. Seja porque eu recebi uma resposta do servidor ou porque deu timeout eu faço a requisição novamente para continuar recebendo as atualizações em tempo real. Implementação mais complexa no lado do servidor, exceto se tiver alguma biblioteca no lado servidor que auxilie.
+
+### SSE - Server-sent events
+Forneço uma fonte de eventos no servidor e o cliente codifica o evento. Server-sent events, em teoria, são uma forma de aplicar long polling, segundo alguns autores. Com SSE, a requisição não é encerrada após o envio de algum dado, mantendo a conexão aberta e ativa, permitindo o envio de diversas mensagens.
+
+```html
+<body>
+  Número de matriculados(as): <output id="sse"></output>
+
+  <script>
+    const eventSource = new EventSource('http://localhost:8123/');
+    const output = document.getElementById('sse');
+    eventSource.addEventListener('matricula', function (e) {
+        console.log(e);
+
+        output.innerText = e.data;
+    });
+  </script>
+</body>
+```
+
+EventSource é a API do servidor que permite a comunicação deste tipo com o servidor.
+
+No devtools, em Network, aparece uma aba chamada EventStream para a requisição.
+
+Caso o cliente queira enviar alguma mensagem para o servidor durante esse tempo, uma nova requisição precisa ser feita, normalmente em outro endpoint. Para cenários onde a comunicação bi-direcional é necessária, como chat ou jogos online, há uma outra técnica que resolve esse problema, porém com uma complexidade a mais: [WebSockets](https://youtu.be/QkhbQoajdCw) (HTML 5).
