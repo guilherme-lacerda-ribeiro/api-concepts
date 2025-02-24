@@ -3,6 +3,12 @@
 - Resource: recurso que se trata. `example.com/api/recurso`.
 - Payload: corpo da requisição (body request).
 
+## Ferramentas
+- Postman
+- https://jsonplaceholder.typicode.com/
+- https://my-json-server.typicode.com/
+- https://mockapi.io/
+
 ## Request
 ### [Métodos HTTP](https://datatracker.ietf.org/doc/html/rfc9110#name-methods)
 [RFC 7231](https://datatracker.ietf.org/doc/html/rfc7231#page-24), [RFC 5789](https://datatracker.ietf.org/doc/html/rfc5789) e [RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110).
@@ -81,6 +87,8 @@ echo json_encode([
 
 `server/api/endpoint?limit=10&page=1&orderBy=titulo&order=desc` - desc|asc - crescente ou decrescente.
 
+[Outros exemplos](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering).
+
 ### [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) - Hypermedia as the Engine of Application State
 Ao final de cada response já vem os links para o que poder ser feito (próxima página, link pra remover, link para os relacionamentos filhos, etc).
 
@@ -104,7 +112,7 @@ Ao final de cada response já vem os links para o que poder ser feito (próxima 
 
 Se a conta estiver negativa, haverá por exemplo apenas o link para depósito e os outros não seriam mostrados.
 
-O [Spring Framework](https://docs.spring.io/spring-hateoas/docs/current/reference/html/#fundamentals.link-relations) (Java) por exemplo usa o HATEOAS através de Hypertext Application Language (HAL), cuja [RFC](https://datatracker.ietf.org/doc/draft-kelly-json-hal/) ainda não está em vigor. [Outro exemplo](https://adidas.gitbook.io/api-guidelines/rest-api-guidelines/message/hal).
+O [Spring Framework](https://docs.spring.io/spring-hateoas/docs/current/reference/html/#fundamentals.link-relations) (Java) por exemplo usa o HATEOAS através de [Hypertext Application Language (HAL)](https://en.wikipedia.org/wiki/Hypertext_Application_Language), cuja [RFC](https://datatracker.ietf.org/doc/draft-kelly-json-hal/) ainda não está em vigor. [Outro exemplo](https://adidas.gitbook.io/api-guidelines/rest-api-guidelines/message/hal).
 
 
 ## Response
@@ -139,8 +147,8 @@ Além dos de formato, os de cache também são os mais uitilizados. (etag també
 
 - [Webhook](https://docs.github.com/pt/webhooks): exponho um endpoint, URL, para que outro serviço acessa para informar que algo aconteceu. Um push no github por exemplo. O que quero ouvir de eventos, preciso pesquisar pra saber como o provedor (github por exemplo) fornece esse dado.
 
-## Ferramentas
-- Postman
-- https://jsonplaceholder.typicode.com/
-- https://my-json-server.typicode.com/
-- https://mockapi.io/
+## Versionamento de API
+Se é necessário mudar alguma definição da API, o interessante é gerar uma nova versão e incluir no URL o número da versão. `endpoint/api/v1/recurso` e `endpoint/api/v2/recurso` por exemplo.
+
+Facilitação na criação de contratos e fornecimento de prazos para descontinuação de funcionalidades.
+
