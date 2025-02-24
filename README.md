@@ -71,6 +71,42 @@ echo json_encode([
     'text' => 'Resposta vindo da API',
 ]);
 ```
+
+### Query parameters (params)
+`server/api/endpoint?parameter=value` - filtrar os parametros (campos do json de resposta) em razão do value informado. Pode ser por comparação (campo like %valor%) ou pode ser por exatidão (campo=valor).
+
+`server/api/endpoint?limit=10&page=1` - paginação - reduzir o custo/tempo para as respostas. 10 itens, estou na 1a página. Ordenação padrão por ID.
+
+`server/api/endpoint?limit=10&page=1&orderBy=titulo` - poderia ser _sortBy_ também.
+
+`server/api/endpoint?limit=10&page=1&orderBy=titulo&order=desc` - desc|asc - crescente ou decrescente.
+
+### [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) - Hypermedia as the Engine of Application State
+Ao final de cada response já vem os links para o que poder ser feito (próxima página, link pra remover, link para os relacionamentos filhos, etc).
+
+```json
+{
+    "account": {
+        "account_number": 12345,
+        "balance": {
+            "currency": "usd",
+            "value": 100.00
+        },
+        "links": {
+            "deposits": "/accounts/12345/deposits",
+            "withdrawals": "/accounts/12345/withdrawals",
+            "transfers": "/accounts/12345/transfers",
+            "close-requests": "/accounts/12345/close-requests"
+        }
+    }
+}
+```
+
+Se a conta estiver negativa, haverá por exemplo apenas o link para depósito e os outros não seriam mostrados.
+
+O [Spring Framework](https://docs.spring.io/spring-hateoas/docs/current/reference/html/#fundamentals.link-relations) (Java) por exemplo usa o HATEOAS através de Hypertext Application Language (HAL), cuja [RFC](https://datatracker.ietf.org/doc/draft-kelly-json-hal/) ainda não está em vigor. [Outro exemplo](https://adidas.gitbook.io/api-guidelines/rest-api-guidelines/message/hal).
+
+
 ## Response
 Toda resposta http tem um [código (status)](https://datatracker.ietf.org/doc/html/rfc7231#page-47), mais comum é 200, ok.
 
