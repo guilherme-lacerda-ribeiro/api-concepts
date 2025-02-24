@@ -97,11 +97,11 @@ Além dos de formato, os de cache também são os mais uitilizados. (etag també
 
 - RESTful - API que segue os padrões REST.
 
-- GraphQL: preciso de todos os telefones (um recurso), de todos os alunos (outro recurso) que fizeram o curso tal (outro recurso ainda), ou seja, 3 requisições pelo menos. O graphql permite que criemos uma query que traz isso de uma só vez por exemplo, traz flexibilidade. Não segue todos os padrões HTTP (todos os status são 200, mesmo com erro, tem que analisar o corpo da requisição e da resposta). Como se fosse um SQL direto ao banco de dados. O cliente precisa saber o que quer e implementar, o graphql fornece tipo uma interface).
+- [GraphQL](https://graphql.org/): acesso mais flexível aos dados. Preciso de todos os telefones (um recurso), de todos os alunos (outro recurso) que fizeram o curso tal (outro recurso ainda), ou seja, 3 requisições pelo menos. O graphql permite que criemos uma query que traz isso de uma só vez por exemplo, traz flexibilidade. Não segue todos os padrões HTTP (todos os status são 200, mesmo com erro, tem que analisar o corpo da requisição e da resposta). Como se fosse um SQL direto ao banco de dados. O cliente precisa saber o que quer e implementar, o graphql fornece tipo uma interface).
 
-- gRPC: SOAP era muito verboso. grpc é um framework para implementar RPC mais moderno. Como se estivesse chamando um método mesmo. `resposta = variavel.funcao('parametro')` variavel "aponta" para o servidor remoto. Utilizado quando precisamos de baixa latência. Serviços muito críticos. Comunicação entre serviços (e não entre navegador e servidor). Por padrão tem compressão.
+- [gRPC](https://grpc.io/): baixa latência. SOAP era muito verboso. grpc é um framework para implementar RPC mais moderno. Como se estivesse chamando um método mesmo. `resposta = variavel.funcao('parametro')` variavel "aponta" para o servidor remoto. Utilizado quando precisamos de baixa latência. Serviços muito críticos. Comunicação entre serviços (e não entre navegador e servidor). Por padrão tem compressão.
 
-- Webhook: exponho um endpoint, URL, para que outro serviço acessa para informar que algo aconteceu. Um push no github por exemplo. O que quero ouvir de eventos, preciso pesquisar pra saber como o provedor (github por exemplo) fornece esse dado.
+- [Webhook](https://docs.github.com/pt/webhooks): exponho um endpoint, URL, para que outro serviço acessa para informar que algo aconteceu. Um push no github por exemplo. O que quero ouvir de eventos, preciso pesquisar pra saber como o provedor (github por exemplo) fornece esse dado.
 
 ## Ferramentas
 - Postman
